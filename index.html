@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OR System - Analisador Google Meu Negócio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+    HEADER (LOGO + NAVEGAÇÃO)
+    ========================================== -->
+    <header class="or-header">
+        <div class="or-brand">
+            <!-- ⬇️ COLOQUE AQUI SUA LOGO PNG -->
+            <img src="img/logo.png" alt="OR System" class="or-logo">
+        </div>
+        <nav class="or-nav">
+            <a href="#" class="nav-link active" data-section="home">Analisador</a>
+            <a href="#" class="nav-link" data-section="sobre">Sobre</a>
+            <a href="#" class="nav-link" data-section="contato">Contato</a>
+        </nav>
+        <div class="or-header-right">
+            <span class="or-version"><span class="dot">●</span> v1.0</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ==========================================
+        SEÇÃO HOME - ANALISADOR
+        ========================================== -->
+        <section id="section-home" class="section active">
+
+            <div class="page-title">
+                <span class="page-tag">✦ Análise gratuita</span>
+                <h1>Analise seu <strong>Google Meu Negócio</strong></h1>
+                <p>Descubra o que está travando seu alcance na internet e receba um plano de ação</p>
+            </div>
+
+            <!-- ========== ETAPA 1: INPUT DO LINK ========== -->
+            <div class="audit-step" id="step-url">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h2>Cole o link do seu Google Meu Negócio</h2>
+                            <p>Vá em <strong>Google Maps</strong> → encontre sua empresa → clique em <strong>Compartilhar</strong> → copie o link</p>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-link"></i>
+                        <input 
+                            type="url" 
+                            id="business-url" 
+                            placeholder="https://maps.app.goo.gl/...  ou  https://g.page/..."
+                            autocomplete="off">
+                    </div>
+
+                    <div class="input-hint">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Aceita links do Google Maps, g.page e google.com/maps</span>
+                    </div>
+
+                    <button id="btn-continue" class="btn btn-primary" disabled>
+                        Continuar <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ========== ETAPA 2: QUESTIONÁRIO ========== -->
+            <div class="audit-step" id="step-quiz" style="display: none;">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h2>Responda o diagnóstico</h2>
+                            <p>Leva só 1 minuto. Quanto mais honesto, melhor a análise.</p>
+                        </div>
+                    </div>
+
+                    <form id="quiz-form">
+                        <!-- Empresa -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="q-name"><i class="fas fa-store"></i> Nome da empresa</label>
+                                <input type="text" id="q-name" placeholder="Ex: Pizzaria Bella Napoli" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="q-category"><i class="fas fa-tag"></i> Categoria</label>
+                                <select id="q-category" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="alimentacao">Alimentação / Restaurante</option>
+                                    <option value="beleza">Beleza / Estética</option>
+                                    <option value="saude">Saúde / Consultório</option>
+                                    <option value="servicos">Serviços (reforma, limpeza, etc)</option>
+                                    <option value="loja">Loja / Comércio</option>
+                                    <option value="automotivo">Automotivo</option>
+                                    <option value="educacao">Educação</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Perguntas de auditoria -->
+                        <div class="question">
+                            <label>1. Quantas fotos você tem no perfil?</label>
+                            <div class="options" data-question="photos">
+                                <button type="button" data-value="0">Nenhuma</button>
+                                <button type="button" data-value="1">De 1 a 5</button>
+                                <button type="button" data-value="2">De 6 a 15</button>
+                                <button type="button" data-value="3">Mais de 15</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>2. Quantas avaliações sua empresa tem?</label>
+                            <div class="options" data-question="reviews">
+                                <button type="button" data-value="0">Nenhuma</button>
+                                <button type="button" data-value="1">1 a 10</button>
+                                <button type="button" data-value="2">11 a 50</button>
+                                <button type="button" data-value="3">Mais de 50</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>3. Qual sua nota média no Google?</label>
+                            <div class="options" data-question="rating">
+                                <button type="button" data-value="0">Abaixo de 3,0</button>
+                                <button type="button" data-value="1">Entre 3,0 e 4,0</button>
+                                <button type="button" data-value="2">Entre 4,0 e 4,5</button>
+                                <button type="button" data-value="3">Acima de 4,5</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>4. Você responde às avaliações dos clientes?</label>
+                            <div class="options" data-question="replies">
+                                <button type="button" data-value="0">Nunca</button>
+                                <button type="button" data-value="1">Às vezes</button>
+                                <button type="button" data-value="2">Quase sempre</button>
+                                <button type="button" data-value="3">Sempre respondo</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>5. Você publica posts/novidades no perfil?</label>
+                            <div class="options" data-question="posts">
+                                <button type="button" data-value="0">Nunca</button>
+                                <button type="button" data-value="1">Raramente</button>
+                                <button type="button" data-value="2">Mensalmente</button>
+                                <button type="button" data-value="3">Semanalmente</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>6. Suas informações estão completas (horário, telefone, site, endereço)?</label>
+                            <div class="options" data-question="info">
+                                <button type="button" data-value="0">Só o básico</button>
+                                <button type="button" data-value="1">Falta algumas coisas</button>
+                                <button type="button" data-value="2">Quase tudo completo</button>
+                                <button type="button" data-value="3">100% completo</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>7. Você tem site próprio vinculado ao perfil?</label>
+                            <div class="options" data-question="site">
+                                <button type="button" data-value="0">Não tenho site</button>
+                                <button type="button" data-value="1">Tenho, mas não vinculei</button>
+                                <button type="button" data-value="2">Sim, vinculado</button>
+                                <button type="button" data-value="3">Sim, e é otimizado</button>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label>8. Você usa palavras-chave na descrição do perfil?</label>
+                            <div class="options" data-question="keywords">
+                                <button type="button" data-value="0">Não sei o que é isso</button>
+                                <button type="button" data-value="1">Não uso</button>
+                                <button type="button" data-value="2">Uso algumas</button>
+                                <button type="button" data-value="3">Uso e reviso sempre</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="step-actions">
+                        <button type="button" id="btn-back" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button type="button" id="btn-analyze" class="btn btn-primary" disabled>
+                            <i class="fas fa-chart-line"></i> Gerar Relatório
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== ETAPA 3: RELATÓRIO ========== -->
+            <div class="audit-step" id="step-report" style="display: none;">
+
+                <!-- Score geral -->
+                <div class="report-header">
+                    <div class="score-card">
+                        <div class="score-ring" id="score-ring">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                                <circle cx="60" cy="60" r="52" class="ring-fill" id="ring-fill"/>
+                            </svg>
+                            <div class="score-value">
+                                <span id="score-number">0</span>
+                                <small>/100</small>
+                            </div>
+                        </div>
+                        <div class="score-info">
+                            <span class="score-label" id="score-label">Analisando...</span>
+                            <h2 id="score-company">Sua empresa</h2>
+                            <p id="score-summary">Aguarde os resultados...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Análise por categoria -->
+                <div class="report-section">
+                    <h3><i class="fas fa-list-check"></i> Análise por categoria</h3>
+                    <div class="categories-grid" id="categories-grid"></div>
+                </div>
+
+                <!-- Pontos fortes -->
+                <div class="report-section">
+                    <h3><i class="fas fa-circle-check" style="color: #10b981;"></i> Pontos fortes</h3>
+                    <div class="tips-list" id="strengths-list"></div>
+                </div>
+
+                <!-- O que melhorar -->
+                <div class="report-section">
+                    <h3><i class="fas fa-triangle-exclamation" style="color: #f59e0b;"></i> O que melhorar</h3>
+                    <div class="tips-list" id="improvements-list"></div>
+                </div>
+
+                <!-- Plano de ação -->
+                <div class="report-section highlight-section">
+                    <h3><i class="fas fa-rocket"></i> Plano de ação — Prioridades</h3>
+                    <div class="action-plan" id="action-plan"></div>
+                </div>
+
+                <!-- Botões -->
+                <div class="report-actions">
+                    <button id="btn-new-analysis" class="btn btn-secondary">
+                        <i class="fas fa-rotate"></i> Nova Análise
+                    </button>
+                    <button id="btn-send-whatsapp" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i> Falar com Especialista
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================================
+        SEÇÃO SOBRE
+        ========================================== -->
+        <section id="section-sobre" class="section">
+            <div class="about-container">
+                <div class="about-header">
+                    <span class="page-tag">✦ Sobre nós</span>
+                    <h1>Quem somos</h1>
+                    <p>Conheça a <strong>OR System</strong> e nossa missão</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Missão</h3>
+                        <p>Transformar ideias em código e código em soluções inovadoras, ajudando empresas a crescerem no ambiente digital.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-eye"></i></div>
+                        <h3>Visão</h3>
+                        <p>Ser referência em tecnologia criativa, reconhecida pela excelência e pelo impacto positivo no crescimento dos nossos clientes.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Valores</h3>
+                        <p>Inovação, qualidade, transparência e paixão por resolver problemas com soluções inteligentes e acessíveis.</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p><strong>OR System</strong> nasceu da vontade de unir design e tecnologia para criar experiências únicas. Com foco em resultado e usabilidade, desenvolvemos ferramentas que colocam o poder do crescimento digital nas mãos de todos.</p>
+                    <p>Nosso compromisso é entregar produtos que não só funcionam, mas que geram resultado real para o seu negócio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        SEÇÃO CONTATO
+        ========================================== -->
+        <section id="section-contato" class="section">
+            <div class="contact-container">
+                <div class="contact-header">
+                    <span class="page-tag">✦ Fale conosco</span>
+                    <h1>Entre em contato</h1>
+                    <p>Tem dúvidas ou quer uma consultoria? Envie uma mensagem!</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4>Telefone</h4>
+                                <p>(38) 99989-4056</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>E-mail</h4>
+                                <p>contato@orsystem.com.br</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Endereço</h4>
+                                <p>Minas Gerais, Brasil</p>
+                            </div>
+                        </div>
+                        <div class="contact-social">
+                     <!--       <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    -->
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="form-name">Seu nome</label>
+                                <input type="text" id="form-name" placeholder="Digite seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">E-mail</label>
+                                <input type="email" id="form-email" placeholder="Digite seu e-mail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-phone">Telefone</label>
+                                <input type="tel" id="form-phone" placeholder="(00) 00000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message">Mensagem</label>
+                                <textarea id="form-message" rows="4" placeholder="Escreva sua mensagem..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        RODAPÉ
+        ========================================== -->
+       <!-- <footer class="or-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="img/logo.png" alt="OR System" class="footer-logo">
+                </div>
+                <div class="footer-links">
+                    <a href="#" data-section="sobre">Sobre</a>
+                    <a href="#" data-section="contato">Contato</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Suporte</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div> !-->
+            <div class="footer-bottom">
+                <p>&copy; 2026 <span class="brand">OR</span><span class="brand-light">SYSTEM</span>. Todos os direitos reservados.</p>
+                <p class="footer-made">Feito com <span class="heart">❤</span> por <span class="brand">OR</span><span class="brand-light">SYSTEM</span></p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
