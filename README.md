@@ -60,6 +60,3 @@ Ajudar **pequenos negócios locais** a terem uma presença digital organizada e 
 
 🔗 [**Acessar o projeto**](https://wesleyorrr.github.io/OrSytem_sistema_para_google_meu_negocio/)
 
----
-
-## 📁 Estrutura do projeto
